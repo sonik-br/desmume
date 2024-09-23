@@ -241,6 +241,7 @@ struct NDSSystem
 	BOOL isTouch;
 	
 	u16 paddle;
+	u8 paddle_multiply;
 
 	u8 *FW_ARM9BootCode;
 	u8 *FW_ARM7BootCode;

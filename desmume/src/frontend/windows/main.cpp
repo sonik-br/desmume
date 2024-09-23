@@ -4380,6 +4380,13 @@ DOKEYDOWN:
 			NDS_UnPause();
 		}
 		return 0;
+	
+	case WM_MOUSEWHEEL: {
+		short wheeldelta = GET_WHEEL_DELTA_WPARAM(wParam);
+		if (wheeldelta)
+			nds.paddle += (wheeldelta / WHEEL_DELTA) * nds.paddle_multiply;
+		break;
+	}
 
 	#ifndef WM_POINTERDOWN
 		#define WM_POINTERDOWN   0x0246

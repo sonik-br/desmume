@@ -2693,6 +2693,7 @@ void NDS_Reset()
 	nds.isTouch = 0;
 	nds.isFakeBooted = false;
 	nds.paddle = 0;
+	nds.paddle_multiply = 1;
 	nds.overclock = 0;
 	nds.ConsoleType = CommonSettings.ConsoleType;
 	nds._DebugConsole = CommonSettings.DebugConsole;

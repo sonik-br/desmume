@@ -2839,10 +2839,27 @@ void input_acquire()
 
 		if (Paddle.Enabled)
 		{
+			static bool last_dec = false;
+			static bool last_inc = false;
 			bool dec = !S9xGetState(Paddle.DEC);
 			bool inc = !S9xGetState(Paddle.INC);
-			if (inc) nds.paddle += 5;
-			if (dec) nds.paddle -= 5;
+
+			uint8 multiply = nds.paddle_multiply;
+			if (inc && !last_inc) multiply += 1;
+			else if (dec && !last_dec) multiply -= 1;
+
+			if (multiply < 1) multiply = 1;
+			else if (multiply > 20) multiply = 20;
+
+			if (multiply != nds.paddle_multiply)
+			{
+				nds.paddle_multiply = multiply;
+				printf("Paddle Multiply: %d \n",
+					nds.paddle_multiply);
+			}
+
+			last_dec = dec;
+			last_inc = inc;
 		}
 
 		if (HCV1000.Enabled)
